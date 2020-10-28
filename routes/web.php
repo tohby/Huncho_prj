@@ -19,4 +19,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/admin', 'AdminController@index');
+
+// Route::middleware(['auth', 'second'])->prefix('admin')->group(function () {
+//     Route::get('/', function () {
+//         // Uses first & second middleware...
+//     });
+
+//     Route::get('user/profile', function () {
+//         // Uses first & second middleware...
+//     });
+// });
