@@ -14,7 +14,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        $brands = Brand::orderBy('name', 'ASC')->get();
+        return view('brands/index')->with('brands', $brands);
     }
 
     /**
@@ -24,7 +25,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return view('brands/create');
     }
 
     /**
@@ -35,7 +36,15 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        Brand::Create([
+            'name' => $request->name,
+        ]);
+
+        return redirect('/admin/brands');
     }
 
     /**
@@ -57,7 +66,8 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        $brand = Brand::find($brand->id);
+        return view('Brands/edit')->with('brand', $brand);
     }
 
     /**
@@ -69,7 +79,15 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        $brand = Brand::find($brand->id);
+        $brand->name = $request->name;
+        $brand->save();
+
+        return redirect('/admin/brands')->with('success', 'Your Brand has been updated');
     }
 
     /**
@@ -80,6 +98,9 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        $brand = Brand::find($brand->id);
+        $brand->delete();
+
+        return redirect('/admin/brands')->with('success', 'Your Brand has been Deleted');
     }
 }

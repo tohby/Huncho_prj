@@ -11,54 +11,55 @@
             </a>
         </div>
         <ul class="nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="dashboard.html">
+            <li class="nav-item {{ request()->is('admin') ? 'active' : '' }}">
+                <a class="nav-link" href="/admin">
                     <i class="fas fa-chart-pie"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
             <li>
                 <a class="nav-link" href="./user.html">
-                    <i class="nc-icon nc-circle-09"></i>
+                    <i class="fas fa-users"></i>
                     <p>Users</p>
                 </a>
             </li>
-            <li>
-                <a class="nav-link" href="./table.html">
-                    <i class="nc-icon nc-notes"></i>
-                    <p>Table List</p>
+            <li
+                class="nav-item {{ request()->is('admin/brands') || request()->is('admin/brands/*')  ? 'active' : '' }}">
+                <a class="nav-link" href="/admin/brands">
+                    <i class="fas fa-boxes"></i>
+                    <p>Brands</p>
                 </a>
             </li>
             <li>
                 <a class="nav-link" href="./typography.html">
-                    <i class="nc-icon nc-paper-2"></i>
-                    <p>Typography</p>
+                    <i class="fas fa-car"></i>
+                    <p>Products</p>
                 </a>
             </li>
             <li>
                 <a class="nav-link" href="./icons.html">
-                    <i class="nc-icon nc-atom"></i>
-                    <p>Icons</p>
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Orders</p>
                 </a>
             </li>
             <li>
                 <a class="nav-link" href="./maps.html">
-                    <i class="nc-icon nc-pin-3"></i>
-                    <p>Maps</p>
+                    <i class="fas fa-comment-dots"></i>
+                    <p>Feedback</p>
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a class="nav-link" href="./notifications.html">
                     <i class="nc-icon nc-bell-55"></i>
                     <p>Notifications</p>
                 </a>
-            </li>
-            <li class="nav-item active active-pro">
+            </li> --}}
+            {{-- <li class="nav-item active active-pro">
                 <a class="nav-link active" href="upgrade.html">
                     <i class="nc-icon nc-alien-33"></i>
                     <p>Upgrade to PRO</p>
                 </a>
-            </li>
+            </li> --}}
         </ul>
     </div>
 </div>

@@ -21,14 +21,8 @@ Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin', 'AdminController@index');
-
-// Route::middleware(['auth', 'second'])->prefix('admin')->group(function () {
-//     Route::get('/', function () {
-//         // Uses first & second middleware...
-//     });
-
-//     Route::get('user/profile', function () {
-//         // Uses first & second middleware...
-//     });
-// });
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::get('/', 'AdminController@index');
+    Route::resource('brands','BrandController');
+    Route::resource('products','ProductController');
+});

@@ -21,7 +21,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>CARtel | Admina</title>
+    <title>CARtel | Admin</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
         name='viewport' />
     <!--     Fonts and icons     -->
@@ -41,6 +41,11 @@
         <div class="main-panel">
             @include('layouts.navbar')
             <div class="content">
+                @if(session('success') || session('error') || count($errors) > 0)
+                <div class="container my-3">
+                    @include('layouts/messages')
+                </div>
+                @endif
                 @yield('content')
             </div>
             <footer class="footer">
@@ -51,7 +56,7 @@
                             <script>
                                 document.write(new Date().getFullYear())
                             </script>
-                            <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                            made with love for a better web
                         </p>
                     </nav>
                 </div>
@@ -61,8 +66,8 @@
 
 </body>
 <!--   Core JS Files   -->
-<script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+{{-- <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
-<script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+<script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script> --}}
 
 </html>
