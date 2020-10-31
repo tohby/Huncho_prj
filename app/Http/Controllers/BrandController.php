@@ -44,7 +44,7 @@ class BrandController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect('/admin/brands');
+        return redirect('/admin/brands')->with('success', 'New brand has addedd successfully');
     }
 
     /**
@@ -55,7 +55,7 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        //
+        return abort(404);
     }
 
     /**

@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('transmission');
             $table->string('engine');
             $table->string('price');
+            $table->string('color');
             $table->unsignedBigInteger('brand_id');
             $table->foreign('brand_id')->references('id')->on('brands');
             $table->string('image');

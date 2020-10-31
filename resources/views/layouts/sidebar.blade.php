@@ -1,4 +1,4 @@
-<div class="sidebar" data-image="{{ asset('images/sidebar-2.jpg') }}">
+<div class="sidebar" data-image="{{ asset('images/sidebar-1.jpg') }}">
     <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -30,8 +30,9 @@
                     <p>Brands</p>
                 </a>
             </li>
-            <li>
-                <a class="nav-link" href="./typography.html">
+            <li
+                class="nav-item {{ request()->is('admin/products') || request()->is('admin/products/*')  ? 'active' : '' }}">
+                <a class="nav-link" href="/admin/products">
                     <i class="fas fa-car"></i>
                     <p>Products</p>
                 </a>

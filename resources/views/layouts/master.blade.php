@@ -69,5 +69,13 @@
 {{-- <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
 <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script> --}}
+<script src="{{ asset('js/bs-custom-file-input.js') }}"></script>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+{{-- <script src="{{ asset('js/popper.js') }}"></script> --}}
+<script>
+    $(document).ready(function () {
+        bsCustomFileInput.init()
+    })
+</script>
 
 </html>

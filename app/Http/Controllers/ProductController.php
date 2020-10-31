@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Brand;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::orderBy('created_at', 'desc')->get();
+        return view('products/index')->with('products', $products);
     }
 
     /**
@@ -24,7 +26,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $brands = Brand::orderBy('name', 'ASC')->get();
+        return view('products/create')->with('brands', $brands);
     }
 
     /**
@@ -35,7 +38,37 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'desc' => 'required',
+            'color' => 'required',
+            'transmission' => 'required',
+            'engine' => 'required',
+            'price' => 'required',
+            'brand' => 'required',
+            'image' => 'required|image',
+        ]);
+        
+        if($request->hasFile('image')){
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+            $path = $request->file('image')->storeAs('public/cars', $fileNameToStore);
+        }
+
+        Product::Create([
+            'name' => $request->name,
+            'desc' => $request->desc,
+            'color' => $request->color,
+            'transmission' => $request->transmission,
+            'engine' => $request->engine,
+            'price' => $request->price,
+            'brand_id' => $request->brand,
+            'image' => $fileNameToStore,
+        ]);
+        
+        return redirect('/admin/products')->with('success', 'New product addedd successfully');
     }
 
     /**
@@ -46,7 +79,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -57,7 +90,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $product = Product::find($product->id);
+        $brands = Brand::orderBy('name', 'ASC')->get();
+        return view('products/edit')->with('product', $product)->with('brands', $brands);
     }
 
     /**
@@ -69,7 +104,37 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'desc' => 'required',
+            'color' => 'required',
+            'transmission' => 'required',
+            'engine' => 'required',
+            'price' => 'required',
+            'brand' => 'required',
+            'image' => 'required|image',
+        ]);
+
+        if($request->hasFile('image')){
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+            $path = $request->file('image')->storeAs('public/cars', $fileNameToStore);
+        }
+
+        $product = Product::find($product->id);
+        $product->name = $request->name;
+        $product->desc = $request->desc;
+        $product->color = $request->color;
+        $product->transmission = $request->transmission;
+        $product->engine = $request->engine;
+        $product->price = $request->price;
+        $product->brand_id = $request->brand;
+        $product->image = $fileNameToStore;
+        $product->save();
+
+        return redirect('/admin/products')->with('success', 'Your Product has been updated');
     }
 
     /**
@@ -80,6 +145,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product = Product::find($brand->id);
+        $product->delete();
+
+        return redirect('/admin/products')->with('success', 'Your product has been Deleted');
     }
 }

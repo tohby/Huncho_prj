@@ -10903,3 +10903,10 @@ a.text-dark:focus {
   }
 }
 
+.thumbnail {
+  width: 8vw;
+  height: 8vw;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+

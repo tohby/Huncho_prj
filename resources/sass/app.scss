@@ -6,3 +6,9 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.thumbnail {
+    width: 8vw;
+    height: 8vw;
+    object-fit: cover;
+}
