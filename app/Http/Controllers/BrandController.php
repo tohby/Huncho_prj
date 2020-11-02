@@ -99,8 +99,12 @@ class BrandController extends Controller
     public function destroy(Brand $brand)
     {
         $brand = Brand::find($brand->id);
-        $brand->delete();
+        if (count($brand->products) > 0){
+            return redirect('/admin/brands')->with('error', 'This brand cannot be deleted, please remove products associated to it before trying again');
+        }else {
+            $brand->delete();
+            return redirect('/admin/brands')->with('success', 'This brand has been deleted');
+        }
 
-        return redirect('/admin/brands')->with('success', 'Your Brand has been Deleted');
     }
 }

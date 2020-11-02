@@ -145,7 +145,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $product = Product::find($brand->id);
+        $product = Product::find($product->id);
         $product->delete();
 
         return redirect('/admin/products')->with('success', 'Your product has been Deleted');
