@@ -10910,3 +10910,21 @@ a.text-dark:focus {
      object-fit: cover;
 }
 
+.carousel {
+  height: 600px;
+  width: 100%;
+}
+
+.carousel-item,
+.carousel-inner,
+.carousel-inner img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.navbar {
+  min-height: 80px;
+}
+
