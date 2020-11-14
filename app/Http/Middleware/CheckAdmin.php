@@ -15,6 +15,12 @@ class CheckAdmin
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        $role = auth()->user()->role;
+        if( $role == 1 || $role == 0){
+            return $next($request);
+        }
+
+        // return redirect('home')->with('error',"Only admin can access!");
+        abort(401);
     }
 }
