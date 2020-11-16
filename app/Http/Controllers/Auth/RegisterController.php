@@ -34,9 +34,9 @@ class RegisterController extends Controller
     public function redirectTo() {
         $role = Auth::user()->role;
         if ($role === 0 || $role === 1){
-            return redirect ('/admin');
+            return '/admin';
         } else if ($role === 2){
-            return redirect ('/');
+            return '/';
         }
     }
 
