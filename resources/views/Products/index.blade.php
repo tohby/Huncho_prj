@@ -42,5 +42,8 @@
             @endforeach
         </div>
     </div>
+    <div class="d-flex justify-content-end mb-5">
+        {{ $products->links() }}
+    </div>
 </div>
 @endsection

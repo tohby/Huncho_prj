@@ -1,9 +1,4 @@
 <div class="sidebar" data-image="{{ asset('images/sidebar-1.jpg') }}">
-    <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
     <div class="sidebar-wrapper">
         <div class="logo">
             <a href="/admin" class="simple-text">
@@ -17,8 +12,8 @@
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li>
-                <a class="nav-link" href="./user.html">
+            <li class="nav-item {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
+                <a class="nav-link" href="/admin/users">
                     <i class="fas fa-users"></i>
                     <p>Users</p>
                 </a>
@@ -37,14 +32,16 @@
                     <p>Products</p>
                 </a>
             </li>
-            <li>
-                <a class="nav-link" href="./icons.html">
+            <li
+                class="nav-item {{ request()->is('admin/orders') || request()->is('admin/orders/*')  ? 'active' : '' }}">
+                <a class="nav-link" href="/admin/orders">
                     <i class="fas fa-shopping-cart"></i>
                     <p>Orders</p>
                 </a>
             </li>
-            <li>
-                <a class="nav-link" href="./maps.html">
+            <li
+                class="nav-item {{ request()->is('admin/feedbacks') || request()->is('admin/feedbacks/*')  ? 'active' : '' }}">
+                <a class="nav-link" href="/admin/feedbacks">
                     <i class="fas fa-comment-dots"></i>
                     <p>Feedback</p>
                 </a>

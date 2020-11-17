@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index');
+Route::get('/inventories', 'HomeController@products');
 
 Auth::routes();
 
@@ -23,4 +24,5 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index');
     Route::resource('brands','BrandController');
     Route::resource('products','ProductController');
+    Route::resource('users','UsersController');
 });

@@ -14,7 +14,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('created_at', 'desc')->get();
+        $products = Product::orderBy('created_at', 'desc')->take(6)->get();
         return view('welcome')->with('products', $products);
+    }
+
+    public function products() {
+        $products = Product::orderBy('created_at', 'desc')->paginate(12);
+        return view('products')->with('products', $products);
     }
 }
