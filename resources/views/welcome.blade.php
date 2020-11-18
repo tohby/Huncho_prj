@@ -28,7 +28,7 @@
         </div>
         @endforeach
     </div>
-    @if (count($count) > 6)
+    @if ($count > 6)
     <div class="mt-5">
         <a href="/inventories" type="button" class="btn btn-primary btn-lg btn-block">View all cars</a>
     </div>
