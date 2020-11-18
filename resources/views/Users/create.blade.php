@@ -51,7 +51,7 @@
                         </div>
                         <div class="form-group">
                             <label for="role">Role</label>
-                            <select class="custom-select" name="transmission">
+                            <select class="custom-select" name="role">
                                 <option selected>Select role</option>
                                 <option value="0">Super Admin</option>
                                 <option value="1">Admin</option>

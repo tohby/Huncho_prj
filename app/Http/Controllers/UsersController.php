@@ -39,7 +39,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        return Validator::make($data, [
+        $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
