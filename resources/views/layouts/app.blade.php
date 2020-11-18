@@ -48,7 +48,7 @@
                             <form id="search-form" action="{{ action("HomeController@search") }}" method="POST">
                                 @csrf
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search..." name="searchKey">
+                                    <input type="text" class="form-control" placeholder="Search by brand..." name="searchKey">
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-secondary" type="submit"><i
                                                 class="fas fa-search"></i></button>
