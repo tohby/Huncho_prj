@@ -9,22 +9,22 @@
             <div class="carousel-item active">
                 <img src="{{asset('Sliders/img-1.jpg')}}" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <h5>Have a feel of our cars</h5>
+                    <p>The all new dodge challenger.</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="{{asset('Sliders/img-2.jpg')}}" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
+                    <h5>Vroom!</h5>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="{{asset('Sliders/img-3.jpg')}}" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    <h5>Drive sfae even in foggy conditions</h5>
+                    <p>Car built for the safety of our buyers.</p>
                 </div>
             </div>
         </div>
