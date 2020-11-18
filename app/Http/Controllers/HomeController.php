@@ -22,4 +22,22 @@ class HomeController extends Controller
         $products = Product::orderBy('created_at', 'desc')->paginate(12);
         return view('products')->with('products', $products);
     }
+
+    public function search(Request $request){
+        $this->validate($request, [
+            'searchKey' => 'required',
+        ]);
+
+        $products = Product::search($request->searchKey)->paginate(12);
+        return view('products')->with('products', $products)->with('searchKey', $request->searchKey);
+    }
+
+    public function buy($id) {
+        $product = Product::findOrFail($id);
+        return view('buy')->with('product', $product);
+    }
+
+    public function order(Request $request){
+
+    }
 }

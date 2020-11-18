@@ -12,12 +12,14 @@
                     <p>Dashboard</p>
                 </a>
             </li>
+            @if ( Auth::user()->role == 0 )
             <li class="nav-item {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
                 <a class="nav-link" href="/admin/users">
                     <i class="fas fa-users"></i>
                     <p>Users</p>
                 </a>
             </li>
+            @endif
             <li
                 class="nav-item {{ request()->is('admin/brands') || request()->is('admin/brands/*')  ? 'active' : '' }}">
                 <a class="nav-link" href="/admin/brands">
@@ -46,12 +48,7 @@
                     <p>Feedback</p>
                 </a>
             </li>
-            {{-- <li>
-                <a class="nav-link" href="./notifications.html">
-                    <i class="nc-icon nc-bell-55"></i>
-                    <p>Notifications</p>
-                </a>
-            </li> --}}
+
             {{-- <li class="nav-item active active-pro">
                 <a class="nav-link active" href="upgrade.html">
                     <i class="nc-icon nc-alien-33"></i>
