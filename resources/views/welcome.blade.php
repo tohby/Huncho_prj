@@ -13,16 +13,25 @@
             <div class="card">
                 <img src="{{ asset('storage/cars/'.$product->image) }}" class="card-img-top" alt="{{ $product->name }}">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
+                    <li class="list-group-item">{{ $product->name }}</li>
+                    <li class="list-group-item">Engine: {{ $product->engine }}</li>
+                    <li class="list-group-item text-primary h4 font-weight-bold">{{ $product->price }}</li>
                 </ul>
                 <div class="card-body">
-
+                    @if (Auth::check())
+                    <a href="/{{$product->id}}/buy" class="btn btn-link">Buy Now</a>
+                    @else
+                    <span class="text-info"><i class="fas fa-info-circle"></i> Please login to purchase this item</span>
+                    @endif
                 </div>
             </div>
         </div>
         @endforeach
     </div>
+    @if (count($products) > 6)
+    <div class="mt-5">
+        <a href="/inventories" type="button" class="btn btn-primary btn-lg btn-block">View all cars</a>
+    </div>
+    @endif
 </div>
 @endsection
