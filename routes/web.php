@@ -14,8 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index');
+Route::get('/profile', 'HomeController@profile');
 Route::get('/inventories', 'HomeController@products');
 Route::get('/{id}/buy', 'HomeController@buy');
+Route::put('/profile', 'HomeController@storeProfile');
 Route::post('/order', 'HomeController@order');
 Route::post('/search', 'HomeController@search');
 
@@ -25,6 +27,7 @@ Auth::routes();
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index');
+    Route::get('/profile', 'UsersController@profile');
     Route::resource('brands','BrandController');
     Route::resource('products','ProductController');
     Route::resource('users','UsersController');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -41,6 +42,7 @@ class UsersController extends Controller
     {
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
+            'address' => ['nullable', 'string'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'role' => ['required', 'numeric'],
@@ -49,45 +51,12 @@ class UsersController extends Controller
         User::Create([
             'name' => $request->name,
             'email' => $request->email,
+            'address' => $request->address,
             'password' => Hash::make($request->password),
             'role' => $request->role,
         ]);
 
         return redirect('/admin/users')->with('success', 'New admin user created successfully');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
@@ -102,5 +71,20 @@ class UsersController extends Controller
         $user->delete();
 
         return redirect('/admin/users')->with('success', 'User has been removed and will no longer be able to access the system');
+    }
+
+    public function profile(){
+        $user = Auth::user();
+        return view('users/profile')->with('user', $user);
+    }
+
+    public function update(Request $request){
+        $user = User::findOrFail(Auth::id());
+        $user->name = $request->name;
+        $user->address = $request->address;
+        // $user->email = $user->email;
+        $user->save();
+
+        return redirect('/admin/profile')->with('success', 'Profile Updated successfully');
     }
 }

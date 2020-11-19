@@ -48,7 +48,8 @@
                             <form id="search-form" action="{{ action("HomeController@search") }}" method="POST">
                                 @csrf
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search by brand..." name="searchKey">
+                                    <input type="text" class="form-control" placeholder="Search by brand..."
+                                        name="searchKey">
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-secondary" type="submit"><i
                                                 class="fas fa-search"></i></button>
@@ -74,6 +75,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a href="/profile" class="dropdown-item">Profile</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
