@@ -37,7 +37,7 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique',
+            'name' => 'required|unique:brands',
         ]);
 
         Brand::Create([
