@@ -78,7 +78,7 @@ class UsersController extends Controller
         return view('users/profile')->with('user', $user);
     }
 
-    public function update(Request $request){
+    public function updateProfile(Request $request){
         $user = User::findOrFail(Auth::id());
         $user->name = $request->name;
         $user->address = $request->address;

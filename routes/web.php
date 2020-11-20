@@ -28,6 +28,7 @@ Auth::routes();
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index');
     Route::get('/profile', 'UsersController@profile');
+    Route::put('/profile', 'UsersController@updateProfile');
     Route::resource('brands','BrandController');
     Route::resource('products','ProductController');
     Route::resource('users','UsersController');

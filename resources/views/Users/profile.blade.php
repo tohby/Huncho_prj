@@ -31,7 +31,7 @@
                     <h4 class="card-title">Edit Profile</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{action("HomeController@update")}}" method="post">
+                    <form action="{{action("UsersController@updateProfile")}}" method="post">
                         @csrf
                         <div class="row">
                             <div class="col-md-5 pr-1">
