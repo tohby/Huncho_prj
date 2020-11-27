@@ -23,6 +23,10 @@ class Product extends Model
         return $this->belongsTo('App\Brand');
     }
 
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
+
     /**
      * Get the indexable data array for the model.
      *

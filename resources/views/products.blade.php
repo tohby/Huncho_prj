@@ -12,7 +12,9 @@
             <div class="card">
                 <img src="{{ asset('storage/cars/'.$product->image) }}" class="card-img-top" alt="{{ $product->name }}">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{{ $product->name }}</li>
+                    <a href="/inventories/{{$product->id}}">
+                        <li class="list-group-item">{{ $product->name }}</li>
+                    </a>
                     <li class="list-group-item">Engine: {{ $product->engine }}</li>
                     <li class="list-group-item text-primary h4 font-weight-bold">{{ $product->price }}</li>
                 </ul>

@@ -93,6 +93,11 @@
         </nav>
 
         <main class="py-4">
+            @if(session('success') || session('error') || count($errors) > 0)
+            <div class="container my-3">
+                @include('layouts/messages')
+            </div>
+            @endif
             @yield('content')
         </main>
     </div>

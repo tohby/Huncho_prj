@@ -12,6 +12,14 @@ class Feedback extends Model
      * @var array
      */
     protected $fillable = [
-        
+        'feedback', 'product_id', 'user_id',
     ];
+
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
+
+    public function product() {
+        return $this->belongsTo('App\Product');
+    }
 }

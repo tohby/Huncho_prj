@@ -16,10 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index');
 Route::get('/profile', 'HomeController@profile');
 Route::get('/inventories', 'HomeController@products');
+Route::get('/inventories/{id}', 'HomeController@product');
 Route::get('/{id}/buy', 'HomeController@buy');
 Route::put('/profile', 'HomeController@storeProfile');
 Route::post('/order', 'HomeController@order');
 Route::post('/search', 'HomeController@search');
+Route::post('/feedback', 'HomeController@feedback_submit');
 
 Auth::routes();
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Feedback;
 use App\User;
 use Auth;
 
@@ -24,6 +25,12 @@ class HomeController extends Controller
     public function products() {
         $products = Product::orderBy('created_at', 'desc')->paginate(12);
         return view('products')->with('products', $products);
+    }
+
+    public function product($id) {
+        $product = Product::find($id);
+        $feedbacks = Feedback::where('product_id', $id)->get();
+        return view('product_detail')->with('product', $product)->with('feedbacks', $feedbacks);
     }
 
     public function search(Request $request){
@@ -59,6 +66,21 @@ class HomeController extends Controller
         $user->save();
 
         return redirect('/profile')->with('success', 'Profile Updated successfully');
+    }
+
+    public function feedback_submit(Request $request) {
+        $this->validate($request, [
+            'productId' => ['required'],
+            'feedback' => ['required'],
+        ]);
+
+        Feedback::Create([
+            'user_id' => Auth::id(),
+            'product_id' => $request->productId,
+            'feedback' => $request->feedback,
+        ]);
+
+        return back()->with('success', 'Your feedback has been submitted');
     }
 
     public function order(Request $request){
