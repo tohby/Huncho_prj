@@ -7,6 +7,7 @@ use App\Product;
 use App\Feedback;
 use App\User;
 use Auth;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
 
 class HomeController extends Controller
 {
@@ -85,5 +86,22 @@ class HomeController extends Controller
 
     public function order(Request $request){
 
+    }
+
+    public function checkout(Request $request){
+        $user_email = Auth::user()->email;
+        $product = Product::find($request->productId);
+        $charge = Stripe::charges()->create([
+            'amount' => $product->price,
+            'currency' => 'usd',
+            'source' => $request->stripeToken,
+            'description' => 'Order',
+            'receipt_email' => $user_email,
+            'metadata' => [
+
+            ],
+        ]);
+
+        return back()->with('success', 'Thank you for your purchase! your payment was successfull');
     }
 }

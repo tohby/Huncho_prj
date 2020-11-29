@@ -22,6 +22,8 @@ Route::put('/profile', 'HomeController@storeProfile');
 Route::post('/order', 'HomeController@order');
 Route::post('/search', 'HomeController@search');
 Route::post('/feedback', 'HomeController@feedback_submit');
+Route::post('/checkout', 'HomeController@checkout');
+
 
 Auth::routes();
 
