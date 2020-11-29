@@ -41,13 +41,13 @@
                     <p>Orders</p>
                 </a>
             </li>
-            <li
+            {{-- <li
                 class="nav-item {{ request()->is('admin/feedbacks') || request()->is('admin/feedbacks/*')  ? 'active' : '' }}">
-                <a class="nav-link" href="/admin/feedbacks">
-                    <i class="fas fa-comment-dots"></i>
-                    <p>Feedback</p>
-                </a>
-            </li>
+            <a class="nav-link" href="/admin/feedbacks">
+                <i class="fas fa-comment-dots"></i>
+                <p>Feedback</p>
+            </a>
+            </li> --}}
 
             {{-- <li class="nav-item active active-pro">
                 <a class="nav-link active" href="upgrade.html">

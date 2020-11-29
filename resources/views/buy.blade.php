@@ -91,6 +91,10 @@
             </div>
         </div>
 
+        <div class="justify-content-center">
+            <a href="/" class="btn btn-link">Continue shopping</a>
+        </div>
+
         <footer class="my-5 pt-5 text-muted text-center text-small">
             <p class="mb-1">&copy; 2017-2020</p>
         </footer>

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Order;
+use App\Product;
+use App\User;
 
 class AdminController extends Controller
 {
@@ -25,6 +28,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin');
+        $orders = Order::where('status', 0)->get();
+        $customers = User::where('role', 2)->count();
+        $products = Product::count();
+        return view('admin')->with('orders', $orders)->with('products', $products)->with('customers', $customers);
     }
 }

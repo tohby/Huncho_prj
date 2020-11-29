@@ -14,7 +14,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::orderBy('status', 'ASC')->paginate(6);
+        return view('Orders/index')->with('orders', $orders);
     }
 
     /**
@@ -46,7 +47,11 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        $order = Order::find($order->id);
+        $order->status = 2;
+        $order->save();
+
+        return back()->with('success', 'Order status has been updated');
     }
 
     /**
@@ -69,7 +74,11 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $order = Order::find($order->id);
+        $order->status = 2;
+        $order->save();
+
+        return back()->with('success', 'Order status has been updated');
     }
 
     /**

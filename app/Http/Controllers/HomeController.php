@@ -6,8 +6,12 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Feedback;
 use App\User;
+use App\Order;
 use Auth;
+use Illuminate\Support\Str;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
+use App\Notifications\InvoicePaid;
+
 
 class HomeController extends Controller
 {
@@ -91,17 +95,31 @@ class HomeController extends Controller
     public function checkout(Request $request){
         $user_email = Auth::user()->email;
         $product = Product::find($request->productId);
+        $user = Auth::user();
         $charge = Stripe::charges()->create([
             'amount' => $product->price,
             'currency' => 'usd',
             'source' => $request->stripeToken,
             'description' => 'Order',
             'receipt_email' => $user_email,
-            'metadata' => [
-
-            ],
         ]);
 
-        return back()->with('success', 'Thank you for your purchase! your payment was successfull');
+        if($charge) {
+            $order = Order::Create([
+                'orderCode' => '#crtl'.rand(),
+                'status' => 0,
+                'user_id' => Auth::id(),
+                'product_id' => $product->id,
+            ]);
+        }
+
+        $user->notify(new InvoicePaid($order));
+
+        return back()->with('success', 'Thank you for your purchase! your payment was successful and an invoice was sent to your email.');
+    }
+
+    public function invoice($id) {
+        $order = Order::find($id);
+        return view('invoice')->with('order', $order);
     }
 }

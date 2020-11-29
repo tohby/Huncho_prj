@@ -18,6 +18,7 @@ Route::get('/profile', 'HomeController@profile');
 Route::get('/inventories', 'HomeController@products');
 Route::get('/inventories/{id}', 'HomeController@product');
 Route::get('/{id}/buy', 'HomeController@buy');
+Route::get('/invoice/{id}', 'HomeController@invoice');
 Route::put('/profile', 'HomeController@storeProfile');
 Route::post('/order', 'HomeController@order');
 Route::post('/search', 'HomeController@search');
@@ -36,4 +37,5 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::resource('brands','BrandController');
     Route::resource('products','ProductController');
     Route::resource('users','UsersController');
+    Route::resource('orders','OrderController');
 });
